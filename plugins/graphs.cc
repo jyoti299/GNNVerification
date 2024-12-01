@@ -417,28 +417,10 @@ void graphs::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup) {
         // Invalid GNN version
         edm::LogError("Vertex Producer") << "Architecture not defined: " ;
     }
-#ifdef THIS_IS_AN_EVENTSETUP_EXAMPLE
-  // if the SetupData is always needed
-  // if need the ESHandle to check if the SetupData was there or not
-#endif
 
-   for (unsigned int iev = 0; iev < simpv.size(); iev++) {
-        auto vsim = simpv.at(iev).sim_vertex;
-	bool selectedLV = simpv.at(iev).eventId.bunchCrossing() == 0 && simpv.at(iev).eventId.event() == 0;
-        double vzsim = simpv.at(iev).z;
-        double vtsim = simpv.at(iev).t * simUnit_;
-        
-       for (TrackingVertex::tp_iterator iTP = vsim->daughterTracks_begin(); 
-         iTP != vsim->daughterTracks_end(); ++iTP) { 
-	       const TrackingParticle& track = **iTP;
-	       //auto momentum = (*(*iTP)).momentum();
-	       float trackvz = (**iTP).vz();
-	       //std::cout << "  Track vz: " << trackvz  << std::endl;
-   }
-  }
-       t_tks = (*theB).build(tracksH, beamSpot, trackTimes_, trackTimeResos_);
+     t_tks = (*theB).build(tracksH, beamSpot, trackTimes_, trackTimeResos_);
 
-      int N = t_tks.size();
+     int N = t_tks.size();
      int k =0;
 
      auto trackgraph = produce_tracks_graph(t_tks);
